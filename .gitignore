@@ -1,0 +1,13 @@
+# use a whitelist based approach to commit only what is required
+# first, ignore everything
+*
+
+# then, unignore subfolders
+!*/
+
+# also unignore ignore
+!.gitignore
+
+# add individual files now
+!init.el
+!eshell/alias
