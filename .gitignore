@@ -11,3 +11,4 @@
 # add individual files now
 !init.el
 !eshell/alias
+!lisp/*
