@@ -1,6 +1,7 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
 (package-initialize)
 
 ;; bootstrap use-package
@@ -48,11 +49,23 @@
 ;;especially em-smart
 
 ;;TODO: checkout magit
+(use-package magit
+  :ensure t
+  :pin marmalade
+  :bind (("C-x g" . magit-status)))
 
+;; Manually downloaded for moffitt into lisp folder
+;; jekyll-directory must be set in custom faces
 (use-package jekyll
   :load-path "lisp/"
   :bind (("C-c b n" . jekyll-draft-post)
 	 ("C-c b P" . jekyll-publish-post)))
+
+;; http://editorconfig.org/
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
