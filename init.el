@@ -1,7 +1,6 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-(add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
 (package-initialize)
 
 ;; bootstrap use-package
@@ -51,7 +50,6 @@
 ;;TODO: checkout magit
 (use-package magit
   :ensure t
-  :pin marmalade
   :bind (("C-x g" . magit-status)))
 
 ;; Manually downloaded for moffitt into lisp folder
