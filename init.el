@@ -1,9 +1,15 @@
+;; we will use emacs own package.el for package management
+;; with use-package for autoloading
 (require 'package)
-(setq package-enable-at-startup nil)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-(package-initialize)
 
-;; bootstrap use-package
+;; We don't want to activate packages at startup.
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Package-Installation.html
+(setq package-enable-at-startup nil)
+
+;; Some of our packages will come from melpa
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+
+;; bootstrap use-package (the rest of packages will be installed by use-package)
 ;; http://www.lunaryorn.com/
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -13,13 +19,19 @@
 (eval-when-compile (require 'use-package))
 
 ;; some window things
+;; Hide menu bar and tool bar
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 
 ;; let's start interactively doing things
+;; ido comes with useful ways to navigate buffers (C-x b) and files (C-x f)
+;; When navigating buffers, can switch to files with (C-f)
 (use-package ido
   :config
-  (ido-mode t))
+  ;; Activate ido by default
+  (ido-mode t)
+  ;; Make ido remember buffers that are closed (so that it is easier to re-open them)
+  (setq ido-use-virtual-buffers t))
 
 ;; smex because I don't know commands
 (use-package smex
@@ -32,6 +44,11 @@
   :ensure t
   :config
   (exec-path-from-shell-initialize))
+
+(use-package evil
+  :ensure t
+  :config
+  (evil-mode 1))
 
 ;;TODO: checkout guru-mode
 (use-package guru-mode
