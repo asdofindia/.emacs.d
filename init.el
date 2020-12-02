@@ -15,7 +15,7 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-;; and call it?
+;; and initialize use-package
 (eval-when-compile (require 'use-package))
 
 ;; some window things
@@ -33,6 +33,7 @@
   ;; Make ido remember buffers that are closed (so that it is easier to re-open them)
   (setq ido-use-virtual-buffers t))
 
+;; ensures that the variables like PATH are same in emacs as in shell
 (use-package exec-path-from-shell
   :ensure t
   :config
@@ -44,13 +45,13 @@
   :config
   (evil-mode 1))
 
-;;TODO: checkout guru-mode
+;; Makes you use C-f, C-b etc and avoid arrow keys (and other shortcuts)
 (use-package guru-mode
   :ensure t
   :config
   (guru-global-mode +1))
 
-;;TODO: checkout windmove
+;; Lets you switch windows using Shift-arrow keys (No more C-x o)
 (use-package windmove
   :config
   (windmove-default-keybindings))
@@ -64,13 +65,6 @@
   :ensure t
   ;; Start magit magic with C-x g, use q to quit
   :bind (("C-x g" . magit-status)))
-
-;; Manually downloaded for moffitt into lisp folder
-;; jekyll-directory must be set in custom faces
-(use-package jekyll
-  :load-path "lisp/"
-  :bind (("C-c b n" . jekyll-draft-post)
-	 ("C-c b P" . jekyll-publish-post)))
 
 ;; http://editorconfig.org/
 (use-package editorconfig
