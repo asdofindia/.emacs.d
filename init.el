@@ -33,18 +33,12 @@
   ;; Make ido remember buffers that are closed (so that it is easier to re-open them)
   (setq ido-use-virtual-buffers t))
 
-;; smex because I don't know commands
-(use-package smex
-  :ensure t
-  :bind (("M-x" . smex)
-	 ("M-X" . smex-major-mode-commands)
-	 ("C-c C-c M-x" . execute-extended-command)))
-
 (use-package exec-path-from-shell
   :ensure t
   :config
   (exec-path-from-shell-initialize))
 
+;; Evil because vim navigation is much better on fingers
 (use-package evil
   :ensure t
   :config
@@ -64,9 +58,11 @@
 ;;TODO: checkout eshell things here: https://www.masteringemacs.org/article/complete-guide-mastering-eshell
 ;;especially em-smart
 
-;;TODO: checkout magit
+;; Magit is a complete git client
+;; https://magit.vc/manual/magit.html
 (use-package magit
   :ensure t
+  ;; Start magit magic with C-x g, use q to quit
   :bind (("C-x g" . magit-status)))
 
 ;; Manually downloaded for moffitt into lisp folder
